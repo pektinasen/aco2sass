@@ -11,13 +11,21 @@ def spec_to_hex(space, w, x, y, z):
     if space > 0:
         return "000000";
 
-    r, b, g = (0, 0, 0)
+    r, g, b = (0, 0, 0)
     if space == 0:
-        r = abs(w/256)
-        b = abs(x/256)
-        g = abs(y/256)
-
-    return "%.2x%.2x%.2x" % (r, b, g)
+        if w < 0:
+            r = (w + 2**16) // 256
+        else:
+            r = w // 256
+        if x < 0:
+            g = (x + 2**16) // 256
+        else:
+            g = x // 256
+        if y < 0:
+            b = (y + 2**16) // 256
+        else:
+            b = y // 256
+    return "{:X}{:X}{:X}".format(r, g, b)
 
 
 def convert(fd):
