@@ -25,7 +25,7 @@ def spec_to_hex(space, w, x, y, z):
             b = (y + 2**16) // 256
         else:
             b = y // 256
-    return "{:X}{:X}{:X}".format(r, g, b)
+    return "{:02X}{:02X}{:02X}".format(r, g, b)
 
 
 def convert(fd):
